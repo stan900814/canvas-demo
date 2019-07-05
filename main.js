@@ -1,10 +1,18 @@
 var canvas = document.getElementById('canvas');
-var context      = canvas.getContext('2d');
-var valve        = false;
+var context = canvas.getContext('2d');
+
+var valve = false;
 var lastposition = {
     x: undefined,
     y: undefined
 };
+
+function pageSize() {
+    var pageWidth = document.documentElement.clientWidth;
+    var pageHeight = document.documentElement.clientHeight;
+    canvas.width = pageWidth;
+    canvas.height = pageHeight;
+}
 
 function drawCircle(x, y, radius) {
     context.beginPath();
@@ -22,11 +30,15 @@ function drawLine(x1, y1, x2, y2) {
     context.stroke();
     context.closePath();
 }
+pageSize();
+window.onresize = function () {
+    pageSize();
+}
 canvas.onmousedown = function (e) {
-        valve        = true;
-    var x            = e.clientX;
-    var y            = e.clientY;
-        lastposition = {
+    valve = true;
+    var x = e.clientX;
+    var y = e.clientY;
+    lastposition = {
         'x': x,
         'y': y
     };
@@ -34,8 +46,8 @@ canvas.onmousedown = function (e) {
 }
 canvas.onmousemove = function (e) {
     if (valve) {
-        var x           = e.clientX;
-        var y           = e.clientY;
+        var x = e.clientX;
+        var y = e.clientY;
         var newposition = {
             'x': x,
             'y': y
