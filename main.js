@@ -2,6 +2,8 @@ var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
 var eraser = document.getElementById('eraser');
 var eraserEnabled = false;
+var actions = document.getElementById('actions');
+var brush = document.getElementById('brush');
 var valve = false;
 var lastposition = {
     x: undefined,
@@ -73,5 +75,10 @@ canvas.onmouseup = function () {
     valve = false;
 }
 eraser.onclick = function () {
-    eraserEnabled = !eraserEnabled;
+    actions.className = 'action x';
+    eraserEnabled = true;
+}
+brush.onclick = function () {
+    actions.className = 'action';
+    eraserEnabled = false;
 }
