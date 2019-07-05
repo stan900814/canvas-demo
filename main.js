@@ -1,6 +1,7 @@
 var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
-
+var eraser = document.getElementById('eraser');
+var eraserEnabled = false;
 var valve = false;
 var lastposition = {
     x: undefined,
@@ -35,28 +36,42 @@ window.onresize = function () {
     pageSize();
 }
 canvas.onmousedown = function (e) {
-    valve = true;
     var x = e.clientX;
     var y = e.clientY;
-    lastposition = {
-        'x': x,
-        'y': y
-    };
-    drawCircle(x, y, 1);
-}
-canvas.onmousemove = function (e) {
-    if (valve) {
-        var x = e.clientX;
-        var y = e.clientY;
-        var newposition = {
+    valve = true;
+    if (eraserEnabled) {
+        context.clearRect(x - 5, y - 5, 10, 10);
+    } else
+        lastposition = {
             'x': x,
             'y': y
-        };
-        drawCircle(x, y, 1);
-        drawLine(lastposition.x, lastposition.y, newposition.x, newposition.y);
-        lastposition = newposition;
+        }
+
+
+}
+canvas.onmousemove = function (e) {
+    var x = e.clientX;
+    var y = e.clientY;
+    if (eraserEnabled) {
+        if (valve) {
+            context.clearRect(x - 5, y - 5, 10, 10);
+        }
+
+    } else {
+        if (valve) {
+            var newposition = {
+                'x': x,
+                'y': y
+            };
+            drawCircle(x, y, 1);
+            drawLine(lastposition.x, lastposition.y, newposition.x, newposition.y);
+            lastposition = newposition;
+        }
     }
 }
 canvas.onmouseup = function () {
     valve = false;
+}
+eraser.onclick = function () {
+    eraserEnabled = !eraserEnabled;
 }
