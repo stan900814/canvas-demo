@@ -33,6 +33,45 @@ function drawLine(x1, y1, x2, y2) {
     context.stroke();
     context.closePath();
 }
+//特性检测
+if (document.body.ontouchstart !== undefined) {
+    //触屏设备
+    canvas.ontouchstart = function (e) {
+        var x = e.touches[0].clientX;
+        var y = e.touches[0].clientY;
+        valve = true;
+        if (eraserEnabled) {
+            context.clearRect(x - 5, y - 5, 10, 10);
+        } else
+            lastposition = {
+                'x': x,
+                'y': y
+            }
+    }
+    canvas.ontouchmove = function (e) {
+        var x = e.touches[0].clientX;
+        var y = e.touches[0].clientY;
+        if (eraserEnabled) {
+            if (valve) {
+                context.clearRect(x - 5, y - 5, 10, 10);
+            }
+
+        } else {
+            if (valve) {
+                var newposition = {
+                    'x': x,
+                    'y': y
+                };
+                drawCircle(x, y, 1);
+                drawLine(lastposition.x, lastposition.y, newposition.x, newposition.y);
+                lastposition = newposition;
+            }
+        }
+    }
+    canvas.ontouchend = function (e) {
+        valve = false;
+    }
+}
 pageSize();
 window.onresize = function () {
     pageSize();
