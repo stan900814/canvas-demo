@@ -3,8 +3,11 @@ var context = canvas.getContext('2d');
 var eraser = document.getElementById('eraser');
 var eraserEnabled = false;
 var actions = document.getElementById('actions');
-var brush = document.getElementById('brush');
+var brush = document.getElementById('pen');
 var valve = false;
+var red = document.getElementById('red');
+var yellow = document.getElementById('yellow');
+var blue = document.getElementById('blue');
 var lastposition = {
     x: undefined,
     y: undefined
@@ -19,14 +22,14 @@ function pageSize() {
 
 function drawCircle(x, y, radius) {
     context.beginPath();
-    context.fillStyle = 'black';
+    // context.fillStyle = 'black';
     context.arc(x, y, radius, 0, Math.PI * 2);
     context.fill();
 }
 
 function drawLine(x1, y1, x2, y2) {
     context.beginPath();
-    context.strokeStyle = 'black';
+    // context.strokeStyle = 'black';
     context.moveTo(x1, y1)
     context.lineWidth = 5;
     context.lineTo(x2, y2);
@@ -114,10 +117,33 @@ canvas.onmouseup = function () {
     valve = false;
 }
 eraser.onclick = function () {
-    actions.className = 'action x';
+    eraser.classList.add('active');
+    pen.classList.remove('active');
     eraserEnabled = true;
 }
-brush.onclick = function () {
-    actions.className = 'action';
+pen.onclick = function () {
+    pen.classList.add('active');
+    eraser.classList.remove('active');
     eraserEnabled = false;
+}
+red.onclick = function () {
+    context.fillStyle = 'red';
+    context.strokeStyle = 'red';
+    red.classList.add('active');
+    yellow.classList.remove('active');
+    blue.classList.remove('active');
+}
+yellow.onclick = function () {
+    context.fillStyle = 'yellow';
+    context.strokeStyle = 'yellow';
+    red.classList.remove('active');
+    yellow.classList.add('active');
+    blue.classList.remove('active');
+}
+blue.onclick = function () {
+    context.fillStyle = 'blue';
+    context.strokeStyle = 'blue';
+    red.classList.remove('active');
+    yellow.classList.remove('active');
+    blue.classList.add('active');
 }

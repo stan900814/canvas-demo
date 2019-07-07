@@ -6,15 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="main.css">
+    <script src="http://at.alicdn.com/t/font_1281827_83m14fh1hs6.js"></script>
     <title>我的画板</title>
 </head>
 
 <body>
     <canvas id="canvas" width="500" height="500"></canvas>
     <div id="actions" class="action">
-        <button id="eraser">橡皮擦</button>
-        <button id="brush">画笔</button>
+        <svg id="pen" class="icon active" aria-hidden="true">
+            <use xlink:href="#icon-huabi"></use>
+        </svg>
+        <svg id="eraser" class="icon" aria-hidden="true">
+            <use xlink:href="#icon-eraser"></use>
+        </svg>
     </div>
+    <ol class="color">
+        <li id="red" class="red"></li>
+        <li id="yellow" class="yellow"></li>
+        <li id="blue" class="blue"></li>
+    </ol>
 
 </body>
 <script src="main.js"></script>

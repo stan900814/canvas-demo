@@ -3,25 +3,74 @@
     padding: 0;
 }
 
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+.icon {
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
 canvas {
-    background: green;
-    /* border    : 1px solid red; */
+    background: white;
+    border: 1px solid black;
 }
 
 #actions {
     position: fixed;
-    left: 0;
-    bottom: 0;
+    left: 28px;
+    top: 10px;
+    margin: 10px 0;
+
 }
 
-.action>#brush {
-    display: none;
+#actions>svg {
+    margin: 0 5px;
+
 }
 
-.action.x>#brush {
-    display: inline-block;
+#actions .active {
+    transform: scale(1.2);
+    transition: all 0.3s;
+    color: red;
 }
 
-.action.x>#eraser {
-    display: none;
+
+
+.color {
+    position: fixed;
+    top: 50px;
+    left: 28px;
+}
+
+li {
+    width: 20px;
+    height: 20px;
+    margin: 10px 0;
+    border: 1px solid grey;
+    border-radius: 50%;
+    margin: 15px 0;
+}
+
+.red {
+    background: red;
+}
+
+.yellow {
+    background: yellow;
+}
+
+.blue {
+    background: blue;
+}
+
+.color .active {
+    transform: scale(1.2);
+    transition: all 0.3s;
 }
