@@ -8,6 +8,9 @@ var valve = false;
 var red = document.getElementById('red');
 var yellow = document.getElementById('yellow');
 var blue = document.getElementById('blue');
+var clear = document.getElementById('clear');
+var save = document.getElementById('save');
+var a = document.createElement('a');
 var lastposition = {
     x: undefined,
     y: undefined
@@ -126,12 +129,31 @@ pen.onclick = function () {
     eraser.classList.remove('active');
     eraserEnabled = false;
 }
+clear.onclick = function () {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+}
+save.onclick = function () {
+    document.body.appendChild(a);
+    a.href = canvas.toDataURL('image/png');
+    a.download = '我的作品';
+    a.click();
+
+}
+black.onclick = function () {
+    context.fillStyle = 'black';
+    context.strokeStyle = 'black';
+    black.classList.add('active');
+    red.classList.remove('active');
+    yellow.classList.remove('active');
+    blue.classList.remove('active');
+}
 red.onclick = function () {
     context.fillStyle = 'red';
     context.strokeStyle = 'red';
     red.classList.add('active');
     yellow.classList.remove('active');
     blue.classList.remove('active');
+    black.classList.remove('active');
 }
 yellow.onclick = function () {
     context.fillStyle = 'yellow';
@@ -139,6 +161,7 @@ yellow.onclick = function () {
     red.classList.remove('active');
     yellow.classList.add('active');
     blue.classList.remove('active');
+    black.classList.remove('active');
 }
 blue.onclick = function () {
     context.fillStyle = 'blue';
@@ -146,4 +169,5 @@ blue.onclick = function () {
     red.classList.remove('active');
     yellow.classList.remove('active');
     blue.classList.add('active');
+    black.classList.remove('active');
 }

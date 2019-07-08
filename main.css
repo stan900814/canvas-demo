@@ -58,6 +58,10 @@ li {
     margin: 15px 0;
 }
 
+.black {
+    background: black;
+}
+
 .red {
     background: red;
 }
