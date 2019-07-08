@@ -18,8 +18,11 @@ li {
 }
 
 canvas {
+    display: block;
     background: white;
-    border: 1px solid black;
+    position: fixed;
+    left: 0;
+    top: 0;
 }
 
 #actions {
